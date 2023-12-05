@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 29572:5672
+      - 29672:15672 #guest:guest
+    networks:
+      - applications-networks
+
+networks:
+  applications-networks:
+    name: applications-networks
