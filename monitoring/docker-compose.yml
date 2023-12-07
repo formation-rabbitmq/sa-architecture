@@ -36,6 +36,22 @@ services:
     networks:
       - applications-networks
 
+  rabbitmq1:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq1
+    restart: always
+    ports:
+      - 29573:5672
+      - 29673:15672 #guest:guest
+
+  rabbitmq2:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq2
+    restart: always
+    ports:
+      - 29574:5672
+      - 29674:15672 #guest:guest
+
 networks:
   applications-networks:
     name: applications-networks
