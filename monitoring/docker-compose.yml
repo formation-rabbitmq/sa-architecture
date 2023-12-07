@@ -16,12 +16,12 @@ services:
     hostname: rabbitmq-1
     restart: always
     ports:
-      - 29573:5672
-      - 29673:15672 #guest:guest
+      - 30573:5672
+      - 30673:15672 #guest:guest
     networks:
       - applications-networks
     volumes:
-      - ./.erlang.cookie:/etc/rabbitmq/.erlang.cookie
+      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
 
   rabbitmq-2:
     image: rabbitmq:3.9.25-management-alpine
@@ -29,27 +29,25 @@ services:
     hostname: rabbitmq-2
     restart: always
     ports:
-      - 29574:5672
-      - 29674:15672 #guest:guest
+      - 30574:5672
+      - 30674:15672 #guest:guest
     networks:
       - applications-networks
     volumes:
-      - ./.erlang.cookie:/etc/rabbitmq/.erlang.cookie
+      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
 
   rabbitmq-3:
     image: rabbitmq:3.9.25-management-alpine
     container_name: rabbitmq-3
     hostname: rabbitmq-3
     restart: always
-    environment:
-      - RABBITMQ_ERLANG_COOKIE=DSDSDSDSDSDSDJHBDHBHSDVHSVDSDDBSHSBDHJSD
     ports:
-      - 29575:5672
-      - 29675:15672 #guest:guest
+      - 30575:5672
+      - 30675:15672 #guest:guest
     networks:
       - applications-networks
     volumes:
-      - ./.erlang.cookie:/etc/rabbitmq/.erlang.cookie
+      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
 
   prometheus:
     image: prom/prometheus:v2.29.2
