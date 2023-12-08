@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  rabbitmq-sharded:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq-sharded
+    hostname: rabbitmq-sharded
+    restart: always
+    ports:
+      - 35575:5672
+      - 35675:15672 #guest:guest
+    networks:
+      - applications-networks-sharded
+
+networks:
+  applications-networks:
+    name: applications-networks-sharded

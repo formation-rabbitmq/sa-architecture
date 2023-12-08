@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  rabbitmq-shovel-1:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq-shovel-1
+    restart: always
+    ports:
+      - 15573:5672
+      - 15673:15672 #guest:guest
+    networks:
+      - applications-networks-shovel
+
+  rabbitmq-shovel-2:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq-shovel-2
+    restart: always
+    ports:
+      - 15574:5672
+      - 15674:15672 #guest:guest
+    networks:
+      - applications-networks-shovel
+
+networks:
+  applications-networks:
+    name: applications-networks-shovel

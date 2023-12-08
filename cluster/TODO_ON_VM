@@ -1,0 +1,4 @@
+
+sudo chmod 400 .erlang.cookie  (SECURE)
+---
+sudo chmod 777 .erlang.cookie  (UNSECURE)

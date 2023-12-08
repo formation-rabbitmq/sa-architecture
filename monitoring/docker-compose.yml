@@ -1,53 +1,15 @@
 version: '3.8'
 services:
-  rabbitmq:
+  rabbitmq-monitor:
     image: rabbitmq:3.9.25-management-alpine
-    container_name: rabbitmq
+    container_name: rabbitmq-monitor
     restart: always
     ports:
       - 29572:5672
       - 29672:15672 #guest:guest
+      - 29772:15692
     networks:
-      - applications-networks
-
-  rabbitmq-1:
-    image: rabbitmq:3.9.25-management-alpine
-    container_name: rabbitmq-1
-    hostname: rabbitmq-1
-    restart: always
-    ports:
-      - 30573:5672
-      - 30673:15672 #guest:guest
-    networks:
-      - applications-networks
-    volumes:
-      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-
-  rabbitmq-2:
-    image: rabbitmq:3.9.25-management-alpine
-    container_name: rabbitmq-2
-    hostname: rabbitmq-2
-    restart: always
-    ports:
-      - 30574:5672
-      - 30674:15672 #guest:guest
-    networks:
-      - applications-networks
-    volumes:
-      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
-
-  rabbitmq-3:
-    image: rabbitmq:3.9.25-management-alpine
-    container_name: rabbitmq-3
-    hostname: rabbitmq-3
-    restart: always
-    ports:
-      - 30575:5672
-      - 30675:15672 #guest:guest
-    networks:
-      - applications-networks
-    volumes:
-      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+      - applications-networks-monitor
 
   prometheus:
     image: prom/prometheus:v2.29.2
@@ -55,12 +17,10 @@ services:
     restart: always
     ports:
       - 9090:9090
-    depends_on:
-      - rabbitmq
     volumes:
       - $PWD/prometheus:/etc/prometheus
     networks:
-      - applications-networks
+      - applications-networks-monitor
 
   grafana:
     image: grafana/grafana:8.0.3
@@ -68,11 +28,11 @@ services:
     restart: always
     ports:
       - 3000:3000
-    depends_on:
-      - rabbitmq
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - applications-networks-monitor
 
 networks:
   applications-networks:
-    name: applications-networks
+    name: applications-networks-monitor
