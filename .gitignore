@@ -6,3 +6,6 @@ CMD
 DEBUGING
 QUORUM
 SHARDED
+SHOVEL
+monitoring/NOTE
+sharded/NOTE

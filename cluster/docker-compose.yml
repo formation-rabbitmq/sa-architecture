@@ -40,5 +40,5 @@ services:
       - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
 
 networks:
-  applications-networks:
+  applications-networks-cluster:
     name: applications-networks-cluster

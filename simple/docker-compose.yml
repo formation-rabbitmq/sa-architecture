@@ -11,5 +11,5 @@ services:
       - applications-networks-simple
 
 networks:
-  applications-networks:
+  applications-networks-simple:
     name: applications-networks-simple

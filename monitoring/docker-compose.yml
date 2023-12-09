@@ -34,5 +34,5 @@ services:
       - applications-networks-monitor
 
 networks:
-  applications-networks:
+  applications-networks-monitor:
     name: applications-networks-monitor

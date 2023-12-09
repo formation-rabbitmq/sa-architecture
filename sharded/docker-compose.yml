@@ -12,5 +12,5 @@ services:
       - applications-networks-sharded
 
 networks:
-  applications-networks:
+  applications-networks-sharded:
     name: applications-networks-sharded
