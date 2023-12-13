@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  rabbitmq-1:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq-4
+    hostname: rabbitmq-4
+    restart: always
+    ports:
+      - 15578:5672
+      - 15678:15672 #guest:guest
+    networks:
+      - applications-networks-cluster
+    volumes:
+      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+
+  rabbitmq-2:
+    image: rabbitmq:3.9.25-management-alpine
+    container_name: rabbitmq-5
+    hostname: rabbitmq-5
+    restart: always
+    ports:
+      - 15579:5672
+      - 15679:15672 #guest:guest
+    networks:
+      - applications-networks-cluster
+    volumes:
+      - ./.erlang.cookie:/var/lib/rabbitmq/.erlang.cookie
+
+networks:
+  applications-networks-cluster:
+    name: applications-networks-cluster
